@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prototype</title>
+</head>
+
+<body>
+    <script>
+        // un objeto compun y corriente
+        // const hero = { 
+        //     name: 'Deku',
+        // }
+        // hero.saludar = function () {
+        //     console.log(`Hola soy ${this.name}`)
+        // }
+        // hero.saludar();
+
+        // const hero2 = { 
+        //     name: 'all',
+        // }
+        // hero2.saludar = function () {
+        //     console.log(`Hola soy ${this.name}`)
+        // }
+        // hero2.saludar();
+
+        // seamos un poco más eficientes
+        // function Hero (name){
+        //     const hero = { 
+        //         name: name
+        //     }
+
+        //     hero.saludar = function(){
+        //         console.log(`Hola soy ${this.name}`);
+        //     }
+
+        //     return hero;
+
+        // }
+        // const Deku = Hero("Deku");
+        // Deku.saludar();
+
+        // const Link = Hero("Link");
+        // Link.saludar();
+
+        // Aun podemos mejorarlo más y evitar tener que caer en la misma funcion cada vez
+
+        // const heroMethods = {
+        //     saludar: function(){
+        //         console.log(`Me llamo ${this.name}`);
+        //     }
+        // }
+        // function Hero (name){
+        //     const hero = { 
+        //         name: name
+        //     }
+
+        //     hero.saludar = heroMethods.saludar;
+
+        //     return hero;
+
+        // }
+        // const Deku = Hero("Deku");
+        // Deku.saludar();
+
+        // const Link = Hero("Link");
+        // Link.saludar();
+
+        /// object.create()
+
+        // const newObject = Object.create(object);
+
+        // const heroMethods = {
+        //     saludar: function(){
+        //         console.log(`MSoy el super heroe ${this.name}`);
+        //     }
+        // }
+        // function Hero (name){
+        //     const hero = Object.create(heroMethods);
+        //     hero.name = name;
+        //     return hero;
+
+        // }
+        // const Deku = Hero("Deku");
+        // Deku.saludar();
+
+        // const Link = Hero("Link");
+        // Link.saludar();
+
+        // los metodos de hero dentro de hero
+
+        // const heroMethods = {
+        //     saludar: function(){
+        //         console.log(`MSoy el super heroe ${this.name}`);
+        //     }
+        // }
+
+        /// prototype
+        // function Hero (name){
+        //     const hero = Object.create(Hero.prototype);
+        //     hero.name = name;
+        //     return hero;
+
+        // }
+
+        // Hero.prototype.saludar = function(){
+        //     console.log(`Soy el super heroe ${this.name}`);
+        // };
+
+        // const Deku = Hero("Deku");
+        // Deku.saludar();
+
+        // const Link = Hero("Link");
+        // Link.saludar();
+
+        // new es un atajo (azucar sintactica para llevar her.prototype
+
+        function Hero (name){
+            // this = Object.create(Hero.prototype);
+            this.name = name;
+            // return hero;
+        }
+
+        Hero.prototype.saludar = function(){
+            console.log(`New ${this.name}`);
+        };
+
+        const Deku = new Hero("Deku");
+        Deku.saludar();
+
+        const Link = new Hero("Link");
+        Link.saludar();
+    </script>
+</body>
+
+</html>

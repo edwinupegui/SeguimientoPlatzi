@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+</head>
+
+<body>
+    <script>
+        // Closures are
+        // PrintColor
+
+        let color1 = 'green';
+
+            function printColor() {
+                console.log(color1);
+            }
+            printColor();
+
+        // funcion que se invoca a si misma iife
+        (function () {
+            let color2 = 'green';
+
+            function printColor() {
+                console.log(color2);
+            }
+            printColor();
+        })();
+
+
+        //Funciones que regresan funciones 
+        function makeColorPrinter(color) {
+            let colorMessage = `The color is ${color}`
+            return function(){
+                console.log(colorMessage)
+            }
+        }
+        let greenColorPrinter = makeColorPrinter("green");
+        console.log(greenColorPrinter());
+
+
+        // variables "privadas"
+        /*const counter = {
+            count = 3
+        }*/
+
+        function makeCounter(n){
+            let count = n;
+            return {
+                increase: function () {
+                    count += 1;
+                },
+                decrease: function () {
+                    count -= 1;
+                },
+                getCount: function () {
+                    return count;
+                }
+
+            }
+        }
+
+        let counter = makeCounter(7);
+        console.log('the count is: ', counter.getCount());
+        counter.increase();
+        console.log('the count is: ', counter.getCount());
+        counter.increase();
+        console.log('the count is: ', counter.getCount());
+        counter.decrease();
+        console.log('the count is: ', counter.getCount());
+        counter.decrease();
+        console.log('the count is: ', counter.getCount());
+        counter.increase();
+        console.log('the count is: ', counter.getCount());
+        counter.increase();
+
+
+    </script>
+</body>
+
+</html>

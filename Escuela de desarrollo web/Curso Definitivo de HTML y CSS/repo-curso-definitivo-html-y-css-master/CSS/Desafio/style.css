@@ -1,0 +1,46 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+.box{
+    width: 50%;
+    margin: 100px auto;
+    padding-top: 50px;
+}
+p{
+    font-size: 1.6rem;
+}
+
+.titulo, .contenido{
+    text-align: center;
+    border-radius: 5%;
+}
+
+.titulo{
+    background-color: red;
+    width: 150px;
+    height: 60px;
+    margin:  auto;
+    position: absolute;
+    top: 120px;
+    left: 600px;
+}
+
+.titulo p{
+    margin-top: 18px;
+    
+}
+
+.contenido{
+    background-color: grey;
+    width: 400px;
+    height: 300px;
+    text-align: center;
+    padding-top: 90px;
+    margin:  auto;
+    border: 1px solid black;
+}

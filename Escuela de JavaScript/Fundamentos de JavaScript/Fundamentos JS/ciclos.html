@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ciclos</title>
+</head>
+<body>
+    <script>
+        var edwin = { 
+            nombre: 'Edwin',
+            Edad: 23,
+            peso: 80
+        }
+
+        console.log(`Al inicio del años ${edwin.nombre} pesa ${edwin.peso} kg`)
+
+        const INCREMENTO_PESO = 0.2
+
+        const DIAS_DEL_ANIO = 365
+
+        const aumentardePeso = persona => persona.peso += INCREMENTO_PESO
+
+        const disminuyePeso = persona => persona.peso -= INCREMENTO_PESO
+
+        const comeMucho = () => Math.random() < 0.3
+
+        const realizaDeporte = () => Math.random() < 0.4
+
+        const META = edwin.peso - 3
+
+        var dias = 0
+
+        while(edwin.peso > META){
+            if(comeMucho()){
+                aumentardePeso(edwin)
+            }
+            if(realizaDeporte()){
+                disminuyePeso(edwin)
+            }
+            dias += 1
+        }
+        console.log(`pasaron ${dias} hasta que ${edwin.nombre} adelgazó 3 kg`)
+
+        for (var i = 1; i <= DIAS_DEL_ANIO; i++) {
+            var random = Math.random()
+
+            if(random < 0.25){
+                aumentardePeso(edwin)
+            }else if(random < 0.5){
+                disminuyePeso(edwin)
+            }
+
+        }
+
+        console.log(`Al final del años ${edwin.nombre} pesa ${edwin.peso.toFixed(1)} kg`)
+    </script>
+</body>
+</html>

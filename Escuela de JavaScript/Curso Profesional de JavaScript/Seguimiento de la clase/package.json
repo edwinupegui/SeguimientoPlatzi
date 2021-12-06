@@ -1,0 +1,18 @@
+{
+  "name": "seguimiento-de-la-clase",
+  "version": "1.0.0",
+  "description": "\"preyecto de seguimiento del cursos profesional de javascript\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html Ejercicios/index.html Ejercicios/**/*.html"
+  },
+  "author": "edwin upegui",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.3.5"
+  },
+  "browserslist": [
+    "last 1 Opera version"
+  ]
+}
