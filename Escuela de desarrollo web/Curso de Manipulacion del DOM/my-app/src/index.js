@@ -1,19 +1,27 @@
-import { registerImage } from './lazy'
+import h from 'hyperscript';
+import { registerImage } from './lazy';
 
 const maximum = 122;
 const minimum = 1;
 const random = () => Math.floor(Math.random() * (maximum - minimum)) + minimum;
 
 const createImageNode = () => {
-    const container = document.createElement('div');
-    container.className = "p-4";
 
-    const imagen = document.createElement('img');
-    imagen.className = "mx-auto";
-    imagen.width = "320";
-    imagen.dataset.src = `https://randomfox.ca/images/${random()}.jpg`;
 
-    container.appendChild(imagen);
+    // const imagen = document.createElement('img');
+    // imagen.className = "mx-auto";
+    // imagen.width = "320";
+    // imagen.dataset.src = `https://randomfox.ca/images/${random()}.jpg`;
+
+    const imagen = h("img.mx-auto", {
+        width: "320",
+        'data-src': `https://randomfox.ca/images/${random()}.jpg`,
+
+    });
+
+    // const container = document.createElement('div');
+    // container.className = "p-4";
+    const container = h('div.p-4.mt-3', imagen);
 
     return container;
 }
