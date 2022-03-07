@@ -28,7 +28,8 @@ nav {
 	margin-left: 12px;
 }
 .navbar-left ul li a,
-.navbar-right ul li a {
+.navbar-right ul li a,
+.navbar-email {
 	text-decoration: none;
 	color: var(--very-light-pink);
 	border: 1px solid var(--white);
@@ -36,7 +37,8 @@ nav {
 	border-radius: 8px;
 }
 .navbar-left ul li a:hover,
-.navbar-right ul li a:hover {
+.navbar-right ul li a:hover,
+.navbar-email:hover {
 	border: 1px solid var(--hospital-green);
 	color: var(--hospital-green);
 }
@@ -44,6 +46,7 @@ nav {
 	color: var(--very-light-pink);
 	font-size: var(--sm);
 	margin-right: 12px;
+	cursor: pointer;
 }
 .navbar-shopping-cart {
 	position: relative;
