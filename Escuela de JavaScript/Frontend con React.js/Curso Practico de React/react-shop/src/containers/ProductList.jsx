@@ -1,13 +1,16 @@
 import React from 'react';
-import Header from '../components/Header';
+import ProductItem from '../components/ProductItem';
+import '@styles/ProductList.scss';
 
-const Layout = ({ children }) => {
+
+const ProductList = () => {
 	return (
-		<div className="Layout">
-			<Header />
-			{children}
-		</div>
+		<section className="main-container">
+			<div className="ProductList">
+				<ProductItem />
+			</div>
+		</section>
 	);
 }
 
-export default Layout;
+export default ProductList;
