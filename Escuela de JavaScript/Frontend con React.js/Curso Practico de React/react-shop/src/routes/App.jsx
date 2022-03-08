@@ -18,8 +18,9 @@ import '../styles/global.css';
 
 const App = () => {
 	const initialState = useInitialState();
+
 	return (
-		<AppContext.provider value={initialState}>
+		<AppContext.Provider value={initialState}>
 			<BrowserRouter>
 				<Layout>
 					<Routes>
@@ -36,7 +37,7 @@ const App = () => {
 					</Routes>
 				</Layout>
 			</BrowserRouter>
-		</AppContext.provider>
+		</AppContext.Provider>
 	);
 }
 
