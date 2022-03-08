@@ -4,10 +4,10 @@ import Header from '@components/Header';
 
 const Home = () => {
 	return (
-		<>
+		<React.Fragment>
 			<Header/>
 			<ProductList />
-		</>
+		</React.Fragment>
 	);
 }
 

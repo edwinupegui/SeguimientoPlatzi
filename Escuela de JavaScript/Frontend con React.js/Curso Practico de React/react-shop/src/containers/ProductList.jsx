@@ -14,7 +14,7 @@ const ProductList = () => {
 		<section className="main-container">
 			<div className="ProductList">
 				{products.map(product =>(
-					<ProductItem product={product} key={product.id} />
+					<ProductItem product={product} key={product.id+2} />
 				))}
 			</div>
 		</section>
