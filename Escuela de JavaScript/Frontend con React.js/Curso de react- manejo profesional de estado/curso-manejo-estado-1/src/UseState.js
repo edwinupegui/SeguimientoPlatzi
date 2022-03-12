@@ -2,6 +2,25 @@ import React from 'react';
 
 const UseState = ( {name} ) => {
   const [error, setError] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
+
+  
+  React.useEffect(() => {
+
+    console.log('inicio')
+    
+    if(loading){
+      setTimeout(() => {
+        console.log('haciendo la validacion')
+  
+        loading(false)
+  
+        console.log('despues')
+      }, 3000)
+    }
+
+    console.log('fin')
+  }, [loading]);
 
   return (
     <div>
@@ -13,11 +32,16 @@ const UseState = ( {name} ) => {
           <p> Error: es incorrecto </p>
         )}
 
-        <input placeholder="Código de seguridad"/>
-        <button
-          onClick={() => setError(!error)}
-        >Comprobar</button>
+        {loading && (
+          <p> Cargando... </p>
+        )}
 
+        <input placeholder="Código de seguridad"/>
+
+        <button
+          onClick={() => setLoading(true)}
+        >Comprobar</button>
+       
       </div>
   )
 }
