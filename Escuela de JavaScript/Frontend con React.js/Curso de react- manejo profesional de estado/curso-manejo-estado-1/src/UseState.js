@@ -2,47 +2,79 @@ import React from 'react';
 
 const SECURITY_CODE = 'paradigma';
 
-const UseState = ( {name} ) => {
+const UseState = ({ name }) => {
   const [state, setState] = React.useState({
     value: '',
-    error: false, 
-    loading: false
+    error: false,
+    loading: false,
+    delete: false,
+    confirmed: false
+
   });
 
-  // const [value, setValue] = React.useState('');
-  // const [error, setError] = React.useState(false);
-  // const [loading, setLoading] = React.useState(false);
-
   console.log(state);
+
+  const onConfirm = () => {
+    setState({
+      ...state,
+      error: false,
+      loading: false,
+      confirmed: true
+    });
+  }
+
+  const onError =() => {
+    setState({
+      ...state,
+      error: true,
+      loading: false
+    });
+  }
+
+  const onWrite = (newValue) => {
+    setState({
+      ...state,
+      value: newValue
+    });
+  }
+
+  const onCheck = () => {
+    setState({
+      ...state,
+      loading: true
+    });
+  }
+
+  const onDelete = () => {
+    setState({
+      ...state,
+      deleted: true,
+    })
+  }
+
+  const onReset = () => {
+    setState({
+      ...state,
+      confirmed: false,
+      deleted: false,
+      value: ''
+    })
+  }
 
   React.useEffect(() => {
 
     console.log('Empezando el efecto')
-    
-    if(state.loading){
+
+    if (state.loading) {
       setTimeout(() => {
         console.log('haciendo la validacion')
-  
-        if(state.value === SECURITY_CODE){
-          setState({
-            ...state,
-            error: false,
-            loading: false
-          });
-          // setLoading(false);
-          // setError(false);
-        }else{
-          setState({
-            ...state,
-            error: true,
-            loading: false
-          });
-          // setError(true);
-          // setLoading(false);
+
+        if (state.value === SECURITY_CODE) {
+          onConfirm();
+        } else {
+          onError();
         }
-        
-        
-  
+
         console.log('Terminando la validación');
       }, 3000)
     }
@@ -50,8 +82,9 @@ const UseState = ( {name} ) => {
     console.log('Terminando el efecto');
   }, [state.loading]);
 
-  return (
-    <div>
+  if (!state.deleted && !state.confirmed) {
+    return (
+      <div>
         <h2> Eliminar {name}</h2>
 
         <p>Por favor, escribe el código de seguridad</p>
@@ -64,34 +97,58 @@ const UseState = ( {name} ) => {
           <p> Cargando... </p>
         )}
 
-        <input 
+        <input
           placeholder="Código de seguridad"
           value={state.value}
           onChange={(event) => {
-
-            setState({
-              ...state,
-              value: event.target.value
-            });
-            // setError(false);
-            // setValue(event.target.value);
+            onWrite(event.target.value);
           }}
         />
 
         <button
           onClick={() => {
-            // setError(false) // este fue
-            setState({
-              ...state,
-              loading: true
-            });
-            // setLoading(true)
-        }}
-          
+            onCheck();
+          }}
+
         >Comprobar</button>
-       
+
       </div>
-  )
+    )
+
+  } else if (state.confirmed && !state.deleted) {
+    return (
+      <React.Fragment>
+        <p>Pedimos confirmación ¿tas seguro?</p>
+        <button
+          onClick={() => {
+            onDelete()
+          }}
+        >Si, eliminar</button>
+        <button
+          onClick={() => {
+            onReset();
+          }}
+        >
+          Nop, me arrepentí</button>
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <p>Eliminado con exito</p>
+
+        <button
+          onClick={() => {
+            onReset()
+          }}
+        >
+          Resetear</button>
+
+        
+      </React.Fragment>
+    );
+  }
+
 }
 
 export { UseState };
