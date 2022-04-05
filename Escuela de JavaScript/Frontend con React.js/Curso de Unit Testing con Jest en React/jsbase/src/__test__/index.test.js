@@ -1,7 +1,7 @@
 const randomString = require('../index');
 
 
-
+// describe() divide el conjunto de pruebas en componentes 
 describe('Probar funcionalidades de randomStrings', () => {
   test('probar la funcionalidad', () => {
     expect(typeof(randomString())).toBe('string');
