@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arreglos</title>
+</head>
+<body>
+    <script>
+        var sacha = {
+            edad: 19,
+            nombre: 'sacha',
+            altura: 1.80
+        }
+        var alan = {
+            edad: 23,
+            nombre: 'alan',
+            altura: 1.90
+        }
+        var martin = {
+            edad: 21,
+            nombre: 'martin',
+            altura: 1.30
+        }
+        var dario = {
+            edad: 29,
+            nombre: 'dario',
+            altura: 1.70
+        }
+
+        var personas = [sacha, alan, martin, dario,]
+
+        // personas[1]
+        // personas[1].nombre
+        // personas[1]["edad"]
+
+        for (let i = 0; i < personas.length; i++) {
+          const persona = personas[i];
+          console.log(`${persona.nombre} tiene ${persona.edad} años`)
+   
+        }
+
+        var esMayorDe20 = (persona) =>{
+            return persona.edad > 20
+        }
+        //// uso del .filter para filtar en el arreglo mediante una funcion
+
+        var personasMayores = personas.filter(esMayorDe20)
+
+        // otro metodo de utilizar .filter
+        // var personasMayores = personas.filter(function (persona){
+        //     return persona.edad > 20
+        // })
+
+        console.log(personasMayores)
+
+        var pasarAlturaACms = (persona) => {
+            persona.altura *= 100
+            return persona
+        }
+
+        var personasCms = personas.map(pasarAlturaACms)
+
+        console.log(personasCms)
+
+    </script>
+</body>
+</html>

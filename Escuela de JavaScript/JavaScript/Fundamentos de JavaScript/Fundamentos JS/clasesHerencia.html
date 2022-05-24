@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases con herencia</title>
+</head>
+<body>
+    <script>
+        class persona {
+            constructor(nombre, apellido, altura) {
+                this.nombre = nombre
+                this.apellido = apellido
+                this.altura = altura
+            }
+            saludar(fn){
+                console.log(`Hola me llamo ${this.nombre} ${this.apellido}`)
+                if(fn){
+                     fn(this.nombre, this.apellido)
+                }
+            }
+            soyAlto(){
+                return this.altura > 1.74
+            }
+        }
+        class desarrollador extends persona{
+            constructor(nombre, apellido, altura){
+                super(nombre, apellido, altura)
+
+            }
+            saludar(fn){
+                console.log(`Hola me llamo ${this.nombre} ${this.apellido} y soy desarrollador/a`)
+                if(fn){
+                     fn(this.nombre, this.apellido, true)
+                }
+            }
+        }
+        function responderSaludo(nombre, apellido, esDev){
+            console.log(`Buen día ${nombre} ${apellido}`)
+            if(esDev){
+                console.log('Wow eres desarrollador/a!!')
+            }
+        }
+
+        var edwin = new persona('edwin', 'upegui', 1.75)
+        var manuela = new desarrollador('manuela', 'fujino', 1.74)
+
+        manuela.saludar(responderSaludo)
+        edwin.saludar(responderSaludo)
+        
+    </script>
+</body>
+</html>
