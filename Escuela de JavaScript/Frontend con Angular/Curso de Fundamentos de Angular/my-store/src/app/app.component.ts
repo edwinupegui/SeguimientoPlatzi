@@ -16,6 +16,10 @@ export class AppComponent {
     avatar: 'https://josefacchin.com/wp-content/uploads/2020/02/como-quitar-el-fondo-de-una-imagen.png'
   }
 
+  emojis: string[] = [ '😂' , '🐦', '🐳','🌮', '💚'];
+
+  newEmoji = '';
+
   toggleButton() {
     this.btnDisabled = !this.btnDisabled;
   }
@@ -32,5 +36,14 @@ export class AppComponent {
   changeName(event: Event) {
     const element = event.target as HTMLInputElement;
     this.person.name = element.value;
+  }
+
+  addEmoji() {
+    this.emojis.push(this.newEmoji);
+    this.newEmoji = '';
+  }
+
+  deleteEmoji(index: number) {
+    this.emojis.splice(index, 1);
   }
 }
