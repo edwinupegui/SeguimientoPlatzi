@@ -13,6 +13,11 @@ export class AppComponent {
   age = 50;
   img = 'https://josefacchin.com/wp-content/uploads/2020/02/como-quitar-el-fondo-de-una-imagen.png'
   btnDisabled = true;
+  register = {
+    name: '',
+    email: '',
+    password: '',
+  }
   person = {
     name: "nicolas",
     age: 50,
@@ -22,6 +27,12 @@ export class AppComponent {
   emojis: string[] = [ '😂' , '🐦', '🐳','🌮', '💚'];
 
   newEmoji = '';
+
+  box = {
+    width: 100,
+    height: 100,
+    background: 'red'
+  }
 
   products: Product[] = [
     {
@@ -82,5 +93,9 @@ export class AppComponent {
 
   deleteEmoji(index: number) {
     this.emojis.splice(index, 1);
+  }
+
+  onRegister() {
+    console.log(this.register)
   }
 }
