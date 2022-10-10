@@ -1,0 +1,151 @@
+:root {
+  --skin: #f6c09c;
+  --background: #ed4042;
+  --red: #ed2860;
+  --dark-red: #680524;
+  --black: #00243a;
+  --white: #fff;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.ear-left {
+  position: absolute;
+  background: var(--skin);
+  width: 30px;
+  height: 20px;
+  border-radius: 10px;
+  right: 80px;
+  top: 70px;
+}
+
+.ear-right {
+  position: absolute;
+  background: var(--skin);
+  width: 30px;
+  height: 20px;
+  border-radius: 10px;
+  left: 80px;
+  top: 70px;
+}
+
+.head {
+  width: 100px;
+  height: 200px;
+  background-color: var(--skin);
+  border-radius: 50px;
+  position: relative;
+}
+
+.eyebrow  {
+  background-color: var(--skin);
+  width: 60px;
+  position: absolute;
+  height: 10px;
+  top: 50px;
+  left: 20px;
+  z-index: 10;
+}
+
+.eye-left {
+  width: 30px;
+  height: 30px;
+  background: var(--white);
+  position: absolute;
+  top: 50px;
+  border-radius: 50%;
+  left: 20px 
+}
+
+.pupil-left {
+  width: 7px;
+  height: 7px;
+  background: var(--black);
+  position: absolute;
+  top: 12px;
+  border-radius: 50%;
+  left: 12px;
+  z-index: 10;
+}
+
+.eye-right {
+  width: 30px;
+  height: 30px;
+  background: var(--white);
+  position: absolute;
+  top: 50px;
+  border-radius: 50%;
+  left: 50px 
+}
+
+.pupil-right {
+  width: 7px;
+  height: 7px;
+  background: var(--black);
+  position: absolute;
+  top: 12px;
+  border-radius: 50%;
+  left: 12px;
+  z-index: 10;
+}
+
+.nose {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: var(--skin);
+  z-index: 20;
+  border-radius: 100%;
+  top: 70px;
+  left: 35px;
+}
+
+.beard {
+  position: absolute;
+  width: 100px;
+  height: 120px;
+  z-index: 10;
+  background: var(--black);
+  border-radius: 40px;
+  top: 80px;
+}
+
+.mouth {
+  position: absolute;
+  background: var(--dark-red);
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  top: 25px;
+  left: 31px;
+}
+
+.teeth {
+  position: absolute;
+  background: var(--white);
+  width: 30px;
+  height: 20px;
+  border-radius: 10px;
+  right: 5px;
+  top: 5px;
+}
+
+.fix {
+  position: absolute;
+  background: var(--black);
+  width: 80px;
+  height: 20px;
+  border-radius: 10px;
+  top: 25px;
+  right: 20px;
+  z-index: 20;
+}
