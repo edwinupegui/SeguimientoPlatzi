@@ -1,8 +1,8 @@
-import React from 'react'
-import { useRouter } from 'next/router'
+import React from 'react';
+import { useRouter } from 'next/router';
 
 const ProductItem = () => {
-  var product = 'test'
+  var product = 'test';
   const {
     query : { productId },  
   } = useRouter();

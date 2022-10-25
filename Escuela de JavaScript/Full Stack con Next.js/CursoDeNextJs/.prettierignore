@@ -1,6 +1,0 @@
-node_modules
-.next
-public
-jest.config.ts
-_error.tsx
-*.css
