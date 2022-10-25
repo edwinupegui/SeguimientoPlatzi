@@ -2,7 +2,8 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 const ProductItem = () => {
-  const { 
+  var product = 'test'
+  const {
     query : { productId },  
   } = useRouter();
 
