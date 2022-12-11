@@ -1,5 +1,5 @@
 const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=2&api_key=live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV';
-const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?limit=2&api_key=live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV';
+const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?api_key=live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV';
 
 const spanError = document.getElementById('error') 
 
