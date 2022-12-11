@@ -11,10 +11,31 @@
     Perritos aleatorios
   </h1>
 
-  <button onClick="reload()">Recargar</button>
-  <img id="imagen1" width="500px" alt="foto perrito aleatorio">
-  <img id="imagen2" width="500px" alt="foto perrito aleatorio">
-  <img id="imagen3" width="500px" alt="foto perrito aleatorio">
+  
+  <section id="randomMichis">
+    <h2>Perritos App</h2>
+
+    <button onClick="loadRandomDogs()">Recargar</button>
+
+    <article>
+      <img id="imagen1" width="300px" alt="foto perrito aleatorio">
+      <button>Guardar el perrito en favoritos</button>
+    </article>
+
+    <article>
+      <img id="imagen2" width="300px" alt="foto perrito aleatorio">
+      <button>Guardar el perrito en favoritos</button>
+    </article>
+  </section>
+
+  <section id="favoritesMichis">
+    <article>
+      <h2>perritos favoritos</h2>
+      <img id="imagen4" width="300px" alt="foto perrito aleatorio">
+      <button>sacar el perrito de favoritos</button>
+    </article>
+  </section>
+
 
   
   <script src="./main.js"></script>
