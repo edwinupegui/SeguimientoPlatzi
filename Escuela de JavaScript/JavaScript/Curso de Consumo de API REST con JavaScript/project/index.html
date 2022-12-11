@@ -15,16 +15,18 @@
   <section id="randomMichis">
     <h2>Perritos App</h2>
 
+    <span id="error"></span>
+
     <button onClick="loadRandomDogs()">Recargar</button>
 
     <article>
       <img id="imagen1" width="300px" alt="foto perrito aleatorio">
-      <button>Guardar el perrito en favoritos</button>
+      <button id="btn1" onclick="saveFavorites()">Guardar el perrito en favoritos</button>
     </article>
 
     <article>
       <img id="imagen2" width="300px" alt="foto perrito aleatorio">
-      <button>Guardar el perrito en favoritos</button>
+      <button id="btn2" onclick="saveFavorites()">Guardar el perrito en favoritos</button>
     </article>
   </section>
 
@@ -32,7 +34,7 @@
     <article>
       <h2>perritos favoritos</h2>
       <img id="imagen4" width="300px" alt="foto perrito aleatorio">
-      <button>sacar el perrito de favoritos</button>
+      <button id="btn3" onclick="saveFavorites()">sacar el perrito de favoritos</button>
     </article>
   </section>
 
