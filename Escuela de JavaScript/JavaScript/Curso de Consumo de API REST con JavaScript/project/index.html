@@ -15,6 +15,15 @@
   <section id="randomMichis">
     <h2>Perritos App</h2>
 
+    <section id="uploadingDog">
+      <h2>Sube la foto de tu perrito</h2>
+  
+      <form id="uploadingForm">
+        <input id="file" type="file" name="file"/>
+        <button type="button" onclick="uploadDogPhoto()">Subir foto del perrito</button>
+      </form>
+    </section>
+
     <span id="error"></span>
 
     <button onClick="loadRandomDogs()">Recargar</button>
@@ -36,8 +45,6 @@
     </article>
   </section>
 
-
-  
   <script src="./main.js"></script>
 </body>
 </html>
