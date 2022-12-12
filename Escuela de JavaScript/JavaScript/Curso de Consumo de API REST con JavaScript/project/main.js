@@ -14,11 +14,16 @@ const loadRandomDogs = async () => {
   } else {
     const img1 = document.getElementById('imagen1');
     const img2 = document.getElementById('imagen2');
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
     
     img1.src = data[0].url;
     img2.src = data[1].url;
+
+    btn1.onclick = () => saveFavorite(data[0].id)
+    btn2.onclick = () => saveFavorite(data[1].id)
   }
-} 
+}
 
 const favoriteDogs = async () => {
   const res = await fetch(API_URL_FAVORITES);
@@ -29,22 +34,40 @@ const favoriteDogs = async () => {
 
   if (res.status !== 200) {
     spanError.innerHTML = 'Hubo otro error: ' + res.status + data.message; 
+  } else {
+    data.forEach(dog => {
+      const section = document.getElementById('favoritesMichis');
+      const article = document.createElement('article');
+      const img = document.createElement('img');
+      const btn = document.createElement('button');
+      const btnText = document.createTextNode('Sacar al perrito de favoritos');
+
+      btn.appendChild(btnText)
+      img.src = dog.image.url
+      img.width = 300
+
+      article.appendChild(img)
+      article.appendChild(btn)
+      section.appendChild(article)
+
+      
+    });
   }
 }
 
-const saveFavorites = async () => {
+const saveFavorite = async (id) => {
   const res = await fetch(API_URL_FAVORITES, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      image_id: 'Z6h74tJ-D',
+      image_id: String(id),
     })
   })
 
   const data = await res.json()
-
+  
   if (res.status !== 200) {
     spanError.innerHTML = 'Hubo otro error: ' + res.status + data.message;
   }
