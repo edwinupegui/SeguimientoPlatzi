@@ -1,5 +1,6 @@
 const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=2&api_key=live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV';
 const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites?api_key=live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV';
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV`;
 
 const spanError = document.getElementById('error') 
 
@@ -35,8 +36,15 @@ const favoriteDogs = async () => {
   if (res.status !== 200) {
     spanError.innerHTML = 'Hubo otro error: ' + res.status + data.message; 
   } else {
+    const section = document.getElementById('favoritesMichis');
+
+    section.innerHTML = ""
+    const h2 = document.createElement('h2')
+    const h2Text = document.createTextNode('Perritos favoritos')
+    h2.appendChild(h2Text)
+    section.appendChild(h2)
+
     data.forEach(dog => {
-      const section = document.getElementById('favoritesMichis');
       const article = document.createElement('article');
       const img = document.createElement('img');
       const btn = document.createElement('button');
@@ -45,12 +53,10 @@ const favoriteDogs = async () => {
       btn.appendChild(btnText)
       img.src = dog.image.url
       img.width = 300
-
+      btn.onclick = () => deleteFavorite(dog.id)
       article.appendChild(img)
       article.appendChild(btn)
       section.appendChild(article)
-
-      
     });
   }
 }
@@ -67,11 +73,28 @@ const saveFavorite = async (id) => {
   })
 
   const data = await res.json()
-  
+
   if (res.status !== 200) {
     spanError.innerHTML = 'Hubo otro error: ' + res.status + data.message;
+  } else {
+    console.log('Perrito guardado en favoritos')
+    favoriteDogs();
   }
+}
 
+const deleteFavorite = async (id) => {
+  const res = await fetch(API_URL_FAVORITES_DELETE(id), {
+    method: 'DELETE',
+  })
+
+  const data = await res.json()
+
+  if (res.status !== 200) {
+    spanError.innerHTML = 'Hubo otro error: ' + res.status + data.message;
+  } else {
+    console.log('Perrito eliminado en favoritos')
+    favoriteDogs();
+  }
 }
 
 loadRandomDogs();
