@@ -1,3 +1,8 @@
+const api = axios.create({
+  baseURl: 'https://api.thedogapi.com/v1',
+});
+api.defaults.headers.common['X-API-KEY'] = 'live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV';
+
 const API_URL_RANDOM = 'https://api.thedogapi.com/v1/images/search?limit=2';
 const API_URL_FAVORITES = 'https://api.thedogapi.com/v1/favourites';
 const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
@@ -73,21 +78,12 @@ const favoriteDogs = async() => {
 }
 
 const saveFavorite = async(id) => {
-  const res = await fetch(API_URL_FAVORITES, { 
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-API-KEY': 'live_r5nbzZaYNwp2fWHT31lZyGrms3uyeToAfjSJfzCHxknrmMpqfx8RkVxlULAZhycV'
-    },
-    body: JSON.stringify({
-      image_id: String(id),
-    })
+  const { data, status } = await api.post('/favourites', {
+    image_id: String(id)
   })
 
-  const data = await res.json()
-
-  if (res.status !== 200) {
-    spanError.innerHTML = 'Hubo otro error: ' + res.status + data.message;
+  if (status !== 200) {
+    spanError.innerHTML = 'Hubo otro error: ' + status + data.message;
   } else {
     console.log('Perrito guardado en favoritos')
     favoriteDogs();
