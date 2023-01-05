@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .card{
+    .card {
       width: 200px;
       height: 200px;
       transform-style: preserve-3d;
@@ -24,7 +25,7 @@
       position: absolute;
       backface-visibility: hidden;
     }
-    
+
     .face.front {
       background: pink;
     }
@@ -33,13 +34,14 @@
       background: papayawhip;
       transform: rotateX(180deg);
     }
-
   </style>
 </head>
+
 <body>
   <div class="card">
     <div class="face front"></div>
     <div class="face back"></div>
   </div>
 </body>
+
 </html>
