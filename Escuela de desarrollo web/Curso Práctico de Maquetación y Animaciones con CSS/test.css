@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  background: #f1f2f6;
+  font-family: "Roboto", serif;
+}
+
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -400px);
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.menu-check {
+  display: none;
+}
+
+.menu {
+  list-style: none;
+  margin: 20px;
+  padding: 0;
+}
+
+.menu .title-item {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+}
+
+.menu .item {
+  height: 67px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  margin: 10px 0;
+  position: relative;
+}
+
+.menu .item>* {
+  width: 450px;
+  padding: 20px;
+  margin: 0;
+  background: #fff;
+  position: relative;
+}
+
+.menu .item>*.text {
+  background: #fff;
+  flex-grow: 1;
+}
+
+.menu .item>*.title {
+  display: block;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.menu .item>*.title .zero-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.menu .item>*.title::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #dfe4ea;
+  bottom: 0;
+  left: 0;
+}
+
+.menu .item>*.title::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #ff7f50;
+  bottom: 0;
+  right: 0;
+  transition: 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.menu .item>*.title:hover::after {
+  width: 100%;
+  left: 0;
+  background: #ff6348;
+}
+
+.menu .item>*.title:hover .plus {
+  background: #ff6348;
+}
+
+.menu .item>*.title .plus {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  width: 30px;
+  background: #ff7f50;
+  border-radius: 50%;
+  transition: 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.menu .item>*.title .plus::before,
+.menu .item>*.title .plus::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.menu .item>*.title .plus::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.alert {
+  background: #ff6348;
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.alert .alert-header {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input:nth-of-type(2):checked~.menu .item:nth-of-type(2) {
+  height: 300px;
+}
+
+input:nth-of-type(2):checked~.menu .item:nth-of-type(2) .title .plus::after {
+  transform: translate(-50%, -50%);
+}
+
+input:nth-of-type(2):checked~.menu .item:nth-of-type(2) .title .zero-label {
+  pointer-events: auto;
+}
+
+input:nth-of-type(3):checked~.menu .item:nth-of-type(3) {
+  height: 300px;
+}
+
+input:nth-of-type(3):checked~.menu .item:nth-of-type(3) .title .plus::after {
+  transform: translate(-50%, -50%);
+}
+
+input:nth-of-type(3):checked~.menu .item:nth-of-type(3) .title .zero-label {
+  pointer-events: auto;
+}
+
+input:nth-of-type(4):checked~.menu .item:nth-of-type(4) {
+  height: 300px;
+}
+
+input:nth-of-type(4):checked~.menu .item:nth-of-type(4) .title .plus::after {
+  transform: translate(-50%, -50%);
+}
+
+input:nth-of-type(4):checked~.menu .item:nth-of-type(4) .title .zero-label {
+  pointer-events: auto;
+}

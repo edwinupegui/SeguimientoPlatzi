@@ -297,16 +297,17 @@
         transform: scale(0.2);
       }
     }
+
     .visible {
       display: grid !important;
     }
 
 
-    .hidden  {
+    .hidden {
       display: none !important;
     }
 
-    
+
     .modal {
       width: 100%;
       height: 100%;
@@ -318,14 +319,87 @@
     }
 
     .modal__content {
+      align-items: center;
       background: white;
-      border-radius: 10px;
-      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       height: 50%;
+      position: relative;
+      width: 50%;
+      border-radius: 10px;
     }
 
     .modal__content--close {
       width: 25px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .modal__content--slider {
+      width: 350px;
+      height: 250px;
+      transform-style: preserve-3d;
+
+    }
+
+    .modal__content--slider input {
+      visibility: hidden;
+    }
+
+    .cards {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .card {
+      background: var(--yellow);
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      transition: transform 0.4s ease;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      width: 50%;
+      height: 100%;
+    }
+
+    .card img {
+      width: 100%;
+    }
+
+
+    #radio-1:checked~.cards #card-1,
+    #radio-2:checked~.cards #card-2,
+    #radio-3:checked~.cards #card-3 {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+      z-index: 1;
+    }
+
+    #radio-1:checked~.cards #card-2,
+    #radio-2:checked~.cards #card-3,
+    #radio-3:checked~.cards #card-1 {
+      transform: translateX(40%) scale(0.8);
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    #radio-1:checked~.cards #card-3,
+    #radio-2:checked~.cards #card-1,
+    #radio-3:checked~.cards #card-2 {
+      transform: translateX(-40%) scale(0.8);
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    inputs {
+      visibility: hidden;
     }
   </style>
 </head>
@@ -382,7 +456,32 @@
     <!-- Modal -->
     <section class="modal hidden">
       <div class="modal__content">
-<img class="modal__content--close" src="https://img.icons8.com/windows/32/000000/macos-close.png" alt="icon close">
+        <img class="modal__content--close" src="https://img.icons8.com/windows/32/000000/macos-close.png"
+          alt="icon close">
+        <div class="modal__content--slider">
+          <input type="radio" name="slider-1" id="radio-1" checked>
+          <input type="radio" name="slider-1" id="radio-2">
+          <input type="radio" name="slider-1" id="radio-3">
+
+
+          <div class="cards">
+            <label for="radio-1" id="card-1" class="card">
+              <img
+                src="https://static.platzi.com/media/public/uploads/spider-man_db8af43d-b692-4986-a385-e645d286e142.png"
+                alt="">
+            </label>
+            <label for="radio-2" id="card-2" class="card">
+              <img
+                src="https://static.platzi.com/media/public/uploads/spider-man-2_b24c96b3-6d59-496f-815d-32b25eba0141.png"
+                alt="">
+            </label>
+            <label for="radio-3" id="card-3" class="card">
+              <img
+                src="https://static.platzi.com/media/public/uploads/spider-man-3_19f5c510-8059-4477-abf8-42249a5445b7.png"
+                alt="">
+            </label>
+          </div>
+        </div>
       </div>
     </section>
   </div>
