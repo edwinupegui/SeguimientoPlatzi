@@ -32,5 +32,3 @@ const juanita = new Student(
     'css'
   ]
 );
-
-let nombre = prompt('escribe tu nombre')
