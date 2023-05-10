@@ -1,7 +1,8 @@
 // Complejidad Temporal ---> 0( n^2 )
-// Complejidad Espacial ---> 0( )
+// Complejidad Espacial ---> 0( n )
+// Espacio auxiliar --->  O(1)
 
-function selectionSort(arreglo) {
+function selectionSort(arreglo) { 
   let longitud = arreglo.length; // O(1)
 
   for (let i = 0; i < longitud; i++) { // O(n^2)
