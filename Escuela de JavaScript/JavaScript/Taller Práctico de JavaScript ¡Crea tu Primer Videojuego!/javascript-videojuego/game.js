@@ -8,6 +8,11 @@ const btnDown = document.getElementById('down')
 let canvasSize;
 let elementsSize;
 
+let playerPosicion = {
+  x: undefined,
+  y: undefined
+}
+
 window.addEventListener('load', setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
 
@@ -25,6 +30,7 @@ function setCanvasSize() {
 
   startGame()
 }
+
 function startGame() {
   game.font = elementsSize + 'px Verdana';
   game.textAlign = 'end';
@@ -33,44 +39,47 @@ function startGame() {
   const mapRows = map.trim().split('\n')
   const mapRowCols = mapRows.map(row => row.trim().split(''))
 
+  game.clearRect(0, 0, canvasSize, canvasSize)
   mapRowCols.forEach((row, rowIndex) => {
     row.forEach((col, colIndex) => {
       const emoji = emojis[col]
       const posX = elementsSize * (colIndex + 1)
       const posY = elementsSize * (rowIndex + 1)
+
+      if (col === 'O' && !playerPosicion.x && !playerPosicion.x) {
+        playerPosicion.x = posX;
+        playerPosicion.y = posY;
+      }
+
       game.fillText(emoji, posX, posY)
     })
   });
-  // for (let row = 1; row <= 10; row++){
-  //   for (let col = 1; col <= 10; col++) {
-  //     game.fillText(emojis[mapsRowCols[row-1][col-1]], elementsSize * col, elementsSize * row);
-  //   }
-  // }
 
-  // window.innerHeight
-  // window.innerWidth
-
-  // game.fillRect(0,50,100,100);
-  // game.clearRect(50,50,50,50);
-  // game.clearRect()
-  // game.clearRect(0,0,50,50);
-
-  // game.font = '25px Verdana'
-  // game.fillStyle = 'purple';
-  // game.textAlign = 'center';
-  // game.fillText('Platzi', 25, 25);
+  MovePlayer()
 }
+
+function MovePlayer() {
+  game.fillText(emojis['PLAYER'], playerPosicion.x, playerPosicion.y)
+}
+
+
 function moveUp() {
-  console.log('UP')
+  if((playerPosicion.y - elementsSize) < elementsSize) return
+  playerPosicion.y -= elementsSize
+  startGame()
 }
 function moveLeft() {
-  console.log('LEFT')
+  if((playerPosicion.x - elementsSize) < elementsSize) return
+  playerPosicion.x -= elementsSize
+  startGame()
 }
 function moveRight() {
-  console.log('RIGHT')
+  playerPosicion.x += elementsSize
+  startGame()
 }
 function moveDown() {
-  console.log('DONW')
+  playerPosicion.y += elementsSize
+  startGame()
 }
 
 btnUp.addEventListener('click', moveUp)
