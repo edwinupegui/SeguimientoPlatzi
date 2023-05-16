@@ -13,6 +13,12 @@ const playerPosition = {
   y: undefined,
 };
 
+const giftPosition = {
+  x: undefined,
+  y: undefined,
+}
+
+
 window.addEventListener('load', setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
 
@@ -22,10 +28,10 @@ function setCanvasSize() {
   } else {
     canvasSize = window.innerHeight * 0.8;
   }
-  
+
   canvas.setAttribute('width', canvasSize);
   canvas.setAttribute('height', canvasSize);
-  
+
   elementsSize = canvasSize / 10;
 
   startGame();
@@ -40,9 +46,9 @@ function startGame() {
   const map = maps[0];
   const mapRows = map.trim().split('\n');
   const mapRowCols = mapRows.map(row => row.trim().split(''));
-  console.log({map, mapRows, mapRowCols});
-  
-  game.clearRect(0,0,canvasSize, canvasSize);
+  console.log({ map, mapRows, mapRowCols });
+
+  game.clearRect(0, 0, canvasSize, canvasSize);
   mapRowCols.forEach((row, rowI) => {
     row.forEach((col, colI) => {
       const emoji = emojis[col];
@@ -53,10 +59,13 @@ function startGame() {
         if (!playerPosition.x && !playerPosition.y) {
           playerPosition.x = posX;
           playerPosition.y = posY;
-          console.log({playerPosition});
+          console.log({ playerPosition });
         }
+      } else if (col == 'I') {
+        giftPosition.x = posX;
+        giftPosition.y = posY;
       }
-      
+
       game.fillText(emoji, posX, posY);
     });
   });
@@ -65,6 +74,12 @@ function startGame() {
 }
 
 function movePlayer() {
+  const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3)
+  const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3)
+  const giftCollision = giftCollisionX && giftCollisionY
+  if (giftCollision) {
+    console.log('Level Up')
+  }
   game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
@@ -112,7 +127,7 @@ function moveRight() {
 }
 function moveDown() {
   console.log('Me quiero mover hacia abajo');
-  
+
   if ((playerPosition.y + elementsSize) > canvasSize) {
     console.log('OUT');
   } else {
