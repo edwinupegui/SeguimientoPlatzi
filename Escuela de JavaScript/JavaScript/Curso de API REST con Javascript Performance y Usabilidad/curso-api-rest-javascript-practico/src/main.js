@@ -20,8 +20,10 @@ const lazyLoader = new IntersectionObserver((entries) => {
   })
 })
 
-function createMovies(movies, container, lazyLoad = false) {
-  container.innerHTML = '';
+function createMovies(movies, container, lazyLoad = false, clean = true) {
+  if (clean) {
+    container.innerHTML = '';
+  }
 
   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
@@ -37,7 +39,7 @@ function createMovies(movies, container, lazyLoad = false) {
       lazyLoad ? 'data-img' : 'src',
       'https://image.tmdb.org/t/p/w300' + movie.poster_path,
     );
-    movieImg.addEventListener('error', ()=>{
+    movieImg.addEventListener('error', () => {
       movieImg.setAttribute('src', 'https://img.icons8.com/arcade/512/popcorn.png')
     })
 
@@ -115,6 +117,24 @@ async function getTrendingMovies() {
   const movies = data.results;
 
   createMovies(movies, genericSection);
+
+  const btnLoadMore = document.createElement('button')
+  btnLoadMore.innerText = 'Cargar mas'
+  btnLoadMore.addEventListener('click', getPaginatedTendingMovies)
+  genericSection.appendChild(btnLoadMore)
+
+}
+let page = 1
+async function getPaginatedTendingMovies() {
+  page++
+  const { data } = await api('trending/movie/day', {
+    params: {
+      page
+    }
+  });
+  const movies = data.results;
+
+  createMovies(movies, genericSection, false, false);
 }
 
 async function getMovieById(id) {
