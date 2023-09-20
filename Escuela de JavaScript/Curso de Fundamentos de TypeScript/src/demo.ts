@@ -1,9 +1,7 @@
-//@ts-check
-
 (async ()=> {
   const myCart = [];
   const products = [];
-  const limit  = 2;
+  const limit = 2;
 
   async function getProducts() {
     const rta = await fetch('http://api.escuelajs.co/api/v1/products', {
@@ -34,6 +32,6 @@
     name: 'Nicolas',
     lastName: 'Molina'
   }
-  const rta = `${person.name}, ${person.lastName}, ${limit}`;
-  console.log(rta);
+  // const rta = person +  limit;
+  // console.log(rta);
 });
