@@ -44,11 +44,4 @@ esto es un comentario en bloque
   print("Soy " + edwin + " y vivo en " + pais);
   print("Soy $edwin y vivo en $pais");
   print("Soy \"$edwin\"\n y vivo en $pais");
-
-  print("funciones de string");
-  String nombre2 = "EdWiN";
-  String nombre3 = "EdWiN es de colombia";
-  print(nombre2.toLowerCase());
-  print(nombre2.toUpperCase());
-  print(nombre3.replaceAll('colombia', 'Canada'));
 }
