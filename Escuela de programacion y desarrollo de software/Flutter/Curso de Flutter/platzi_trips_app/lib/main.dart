@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
+
 import 'description_place.dart';
+import 'review_list.dart';
+import 'header_appbar.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -9,6 +14,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo test',
@@ -17,12 +25,17 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Hello World')
-        ),
-      body: DescriptionPlace("Medellin", 4, "This is the best place in the world"),
+        body: Stack(children: [
+          ListView(
+            children: const [
+              DescriptionPlace(
+                  "Medellin", 4, "Lorem Ipsum es simplemente el texto de relleno de la industria de la impresión y la composición tipográfica. Lorem Ipsum ha sido el texto de relleno estándar de la industria desde el año 1500, cuando un impresor desconocido tomó una galerada de tipo y la mezcló para hacer un libro de muestras tipográficas."),
+              ReviewList(),
+            ],
+          ),
+          const HeaderAppBar(),
+        ]),
       ),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class DescriptionPlace extends StatelessWidget {
 
-  String namePlace;
-  int start;
-  String descriptionPlace;
+  final String namePlace;
+  final int start;
+  final String descriptionPlace;
  
-  DescriptionPlace(this.namePlace, this.start, this.descriptionPlace, {super.key});
+  const DescriptionPlace(this.namePlace, this.start, this.descriptionPlace, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +52,7 @@ class DescriptionPlace extends StatelessWidget {
           child: Text(
             namePlace,
             style: const TextStyle(
+              fontFamily: 'Lato',
               fontSize: 30.0,
               fontWeight: FontWeight.w900,
             ),
@@ -78,6 +79,7 @@ class DescriptionPlace extends StatelessWidget {
       child: Text(
         descriptionPlace,
         style: const TextStyle(
+          fontFamily: 'Lato',
           fontSize: 16.0,
           color: Color(0xFF6D6E71)
         ),
