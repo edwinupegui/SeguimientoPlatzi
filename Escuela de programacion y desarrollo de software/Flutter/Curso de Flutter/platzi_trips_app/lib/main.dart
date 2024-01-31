@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'description_place.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -16,14 +16,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
-      home:Scaffold(
+      home: Scaffold(
         appBar: AppBar(
-          title: const Text("Hola Mundo Flutter"),
+          title: const Text('Hello World')
         ),
-        body: const Center(
-          child: Text("Hola Mundo"),
-        ),
-      )
+      body: const DescriptionPlace(),
+      ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
