@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget {
-
   final String namePlace;
   final int start;
   final String descriptionPlace;
- 
-  const DescriptionPlace(this.namePlace, this.start, this.descriptionPlace, {Key? key}) : super(key: key);
+
+  const DescriptionPlace(this.namePlace, this.start, this.descriptionPlace,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class DescriptionPlace extends StatelessWidget {
         color: Color(0xFFF2C611),
       ),
     );
-     final starBorder = Container(
+    final starBorder = Container(
       margin: const EdgeInsets.only(
         top: 323.0,
         right: 3.0,
@@ -79,18 +81,17 @@ class DescriptionPlace extends StatelessWidget {
       child: Text(
         descriptionPlace,
         style: const TextStyle(
-          fontFamily: 'Lato',
-          fontSize: 16.0,
-          color: Color(0xFF6D6E71)
-        ),
+            fontFamily: 'Lato', fontSize: 16.0, color: Color(0xFF6D6E71)),
         textAlign: TextAlign.justify,
       ),
     );
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         titleStars,
         description,
+        const ButtonPurple(buttonText: 'Navigate'),
       ],
     );
   }
