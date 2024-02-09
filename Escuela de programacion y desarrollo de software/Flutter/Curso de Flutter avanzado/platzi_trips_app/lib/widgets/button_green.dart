@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
 
-class ButtonPurple extends StatelessWidget {
-  final String buttonText;
+class ButtonGreen extends StatefulWidget {
+  final double height;
+  final double width;
+  final String text;
+  final VoidCallback onPressed;
 
-  const ButtonPurple(this.buttonText, {super.key});
+  const ButtonGreen(
+      {super.key,
+      required this.height,
+      required this.width,
+      required this.text,
+      required this.onPressed});
 
+  @override
+  State<StatefulWidget> createState() {
+    return _ButtonGreen();
+  }
+}
+
+class _ButtonGreen extends State<ButtonGreen> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Navegando"),
-          ),
-        )
-      },
+      onTap: widget.onPressed,
       child: Container(
         margin: const EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
-        height: 50.0,
-        width: 180.0,
+        height: widget.height,
+        width: widget.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.0),
           gradient: const LinearGradient(
-              colors: [Color(0xFF4268D3), Color(0xFF584CD1)],
+              colors: [Color(0xFFa7ff84), Color(0xFF1cbb78)],
               begin: FractionalOffset(0.2, 0.0),
               end: FractionalOffset(1.0, 0.6),
               stops: [0.0, 0.6],
@@ -30,7 +39,7 @@ class ButtonPurple extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            buttonText,
+            widget.text,
             style: const TextStyle(
                 fontSize: 18.0, fontFamily: "Lato", color: Colors.white),
           ),
