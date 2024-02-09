@@ -12,6 +12,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreen extends State<SignInScreen> {
+
   @override
   Widget build(BuildContext context) {
     return signInGoogleUi();
@@ -34,9 +35,6 @@ class _SignInScreen extends State<SignInScreen> {
             ),
             ButtonGreen(
               text: "Login with Gmail",
-              onPressed: () {
-                
-              },
               height: 50.0,
               width: 300.0,
             )

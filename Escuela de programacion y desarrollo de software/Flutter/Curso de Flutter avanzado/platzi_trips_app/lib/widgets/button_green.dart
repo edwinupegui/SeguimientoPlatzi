@@ -4,14 +4,12 @@ class ButtonGreen extends StatefulWidget {
   final double height;
   final double width;
   final String text;
-  final VoidCallback onPressed;
 
   const ButtonGreen(
       {super.key,
       required this.height,
       required this.width,
-      required this.text,
-      required this.onPressed});
+      required this.text});
 
   @override
   State<StatefulWidget> createState() {
@@ -23,7 +21,6 @@ class _ButtonGreen extends State<ButtonGreen> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.onPressed,
       child: Container(
         margin: const EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
         height: widget.height,
