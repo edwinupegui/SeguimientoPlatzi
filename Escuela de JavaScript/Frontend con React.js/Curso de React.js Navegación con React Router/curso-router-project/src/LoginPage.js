@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from './auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 function LoginPage() {
   const auth = useAuth()
@@ -11,6 +11,10 @@ function LoginPage() {
     e.preventDefault()
     auth.login({userName})
     navigate('/profile')
+  }
+
+  if(auth.user) {
+    return <Navigate to='/profile'/>
   }
 
   return (
