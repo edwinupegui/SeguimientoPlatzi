@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import './PokemonList.css';
 
-const PokemonCard = ({name}) => {
+const PokemonCard = ({name, img}) => {
   return (
     <Card
       title={name}
