@@ -1,18 +1,45 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import type { ImgHTMLAttributes } from "react";
 
-type Props = {
-  image: string;
+type LazyImageProps = {
+  src: string;
+  onLazyLoad?: (img: HTMLImageElement) => void;
 };
 
-export function RandomFox({ image }: Props): JSX.Element {
+type Props = ImgHTMLAttributes<HTMLImageElement> & LazyImageProps;
+
+export function LazyImage({
+  src,
+  onLazyLoad,
+  ...imgProps
+}: Props): JSX.Element {
   const node = useRef<HTMLImageElement>(null);
+  const [isLazyLoaded, setIsLazyLoaded] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(
+    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+  );
 
   useEffect(() => {
+    if (isLazyLoaded) {
+      return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log("Intersecting");
+        if (!entry.isIntersecting || !node.current) {
+          return;
         }
+
+        setCurrentSrc(src);
+        observer.disconnect();
+        setIsLazyLoaded(true);
+
+        if (typeof onLazyLoad === "function") {
+          onLazyLoad(node.current);
+        }
+
+        // Ejemplo de extension de Window con Plausible
+        // window.plausible("lazyload", { props: { src } });
       });
     });
 
@@ -23,15 +50,7 @@ export function RandomFox({ image }: Props): JSX.Element {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [src, onLazyLoad, isLazyLoaded]);
 
-  return (
-    <img
-      ref={node}
-      width="320"
-      height="auto"
-      src={image}
-      className="mx-auto rounded-md bg-gray-300"
-    />
-  );
+  return <img ref={node} src={currentSrc} {...imgProps} />;
 }

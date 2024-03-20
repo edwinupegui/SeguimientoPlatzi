@@ -2,7 +2,12 @@ import { useState } from "react";
 import type { MouseEventHandler } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { RandomFox } from "@/components/RandomFox";
+
+// Ejemplo utilizando una librería sin tipos.
+// Realmente no hace falta su uso.
+import { random } from "lodash";
+
+import { LazyImage } from "@/components/RandomFox";
 
 // generate simple unique id
 const generateId = (): string => {
@@ -13,19 +18,14 @@ const generateId = (): string => {
 };
 
 // random number from 1 to 122
-const random = () => Math.floor(Math.random() * 122) + 1;
-
-type ImageItem = {
-  id: string;
-  url: string;
-};
+const myRandom = () => random(1, 122);
 
 const Home: NextPage = () => {
-  const [images, setImages] = useState<Array<ImageItem>>([]);
+  const [images, setImages] = useState<Array<IFoxImageItem>>([]);
 
   const addNewFox: MouseEventHandler<HTMLButtonElement> = () => {
     const id = generateId();
-    const url = `https://randomfox.ca/images/${random()}.jpg`;
+    const url = `https://randomfox.ca/images/${myRandom()}.jpg`;
     setImages([...images, { id, url }]);
   };
 
@@ -46,9 +46,20 @@ const Home: NextPage = () => {
             Add new fox
           </button>
         </div>
-        {images.map(({ id, url }) => (
+        {images.map(({ id, url }, index) => (
           <div className="p-4" key={id}>
-            <RandomFox image={url} />
+            <LazyImage
+              src={url}
+              width="320"
+              height="auto"
+              className="mx-auto rounded-md bg-gray-300"
+              onClick={() => {
+                console.log("holi!");
+              }}
+              onLazyLoad={(img) => {
+                console.log(`Image #${index + 1} cargada. Nodo:`, img);
+              }}
+            />
           </div>
         ))}
       </main>
