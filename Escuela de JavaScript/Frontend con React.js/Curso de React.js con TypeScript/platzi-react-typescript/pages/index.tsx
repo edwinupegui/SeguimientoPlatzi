@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-
+import { RandomFox } from './components/RandomFox'
 const Home: NextPage = () => {
+  const random = () => Math.floor(Math.random() * 123) + 1;
+
   return (
     <div>
       <Head>
@@ -12,6 +14,7 @@ const Home: NextPage = () => {
 
       <main>
         <h1 className="text-3xl font-bold underline">Hey Platzi 😎!</h1>
+        <RandomFox image={`https://randomfox.ca/images/${random()}.jpg`}/>
       </main>
 
       <footer></footer>
