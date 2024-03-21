@@ -1,1 +1,13 @@
-console.log('hola mundo desde el server 2')
+import express, { Express, Request, Response } from 'express'
+import { config } from './config'
+import { template } from './render/template'
+
+const app: Express = express()
+
+app.get('*', (req: Request, res:Response) =>{
+  res.send(template(`<h1>Helo desde ${req.url}</h1>`))
+})
+
+app.listen(config.PORT, () => {
+  console.log(`listening in http://localhost:${config.PORT}`)
+})
