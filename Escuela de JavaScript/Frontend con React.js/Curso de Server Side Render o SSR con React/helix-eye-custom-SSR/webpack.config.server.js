@@ -9,9 +9,9 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   name: 'server',
-  entry: './src/app/server/index.ts',
-  mode,
+  entry: './src/server/index.ts',
   target: "node",
+  mode,
   stats: 'errors-only',
   output: {
     path: path.join(__dirname, '/dist'),
@@ -38,8 +38,8 @@ module.exports = {
       },
     ]
   },
-  externals : [nodeExternals()],
+  externals: [nodeExternals()],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
+  }
 };
