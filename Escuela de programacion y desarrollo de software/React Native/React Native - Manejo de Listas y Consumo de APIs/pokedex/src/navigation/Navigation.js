@@ -2,9 +2,9 @@ import React from 'react';
 import { Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import FavoriteScreen from '../screens/Favorite';
-import PokedexScreen from '../screens/Pokedex';
-import AccountScreen from '../screens/Account';
+import FavoriteNavigation from './FavoriteNavigation';
+import PokedexNavigation from './PokedexNavigation';
+import AccountNavigation from './AccountNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,9 +12,10 @@ export default function Navigation() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name='Favorite'
-        component={FavoriteScreen}
+        name='FavoriteNavigation'
+        component={FavoriteNavigation}
         options={{
+          headerShown: false,
           tabBarLabel: "Favoritos",
           tabBarIcon: ({ color, size }) => (
             <Icon name='heart' color={color} size={size} />
@@ -22,23 +23,24 @@ export default function Navigation() {
         }}
       />
       <Tab.Screen
-        name='Pokedex'
-        component={PokedexScreen}
+        name='PokedexNavigation'
+        component={PokedexNavigation}
         options={{
+          headerShown: false,
           tabBarLabel: "",
           tabBarIcon: () => renderPokeBall(),
         }}
       />
       <Tab.Screen
-        name='Account'
-        component={AccountScreen}
+        name='AccountNavigation'
+        component={AccountNavigation}
         options={{
+          headerShown: false,
           tabBarLabel: "Mi Cuenta",
           tabBarIcon: ({ color, size }) => (
             <Icon name='user' color={color} size={size} />
           ),
-        }}
-      />
+        }} />
     </Tab.Navigator>
   );
 }
@@ -47,7 +49,7 @@ const renderPokeBall = () => {
   return (
     <Image
       source={require('../assets/pokeball.png')}
-      style={{ width: 75, height: 75, top: -15 }}
+      style={{ width: 70, height: 70, top: -15 }}
     />
   )
 }
