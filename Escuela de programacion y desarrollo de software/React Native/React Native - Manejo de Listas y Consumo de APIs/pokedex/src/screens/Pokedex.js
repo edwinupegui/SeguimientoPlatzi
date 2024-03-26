@@ -24,7 +24,10 @@ export default function Pokedex() {
     })
 
     const newPokemons = await Promise.all(promises)
-    setPokemons((prevPokemons) => [...prevPokemons, ...newPokemons])
+    setPokemons((prevPokemons) => [
+      ...prevPokemons,
+      ...newPokemons.map((pokemon, index) => ({ ...pokemon, key: `${pokemon.id}:${index}` })),
+    ])
   }
 
   useEffect(() => {
