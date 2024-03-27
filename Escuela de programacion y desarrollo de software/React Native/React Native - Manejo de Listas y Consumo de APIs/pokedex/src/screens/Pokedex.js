@@ -17,7 +17,6 @@ export default function Pokedex() {
         id: pokemonDetails.id,
         name: pokemonDetails.name,
         principalType: pokemonDetails.types[0].type.name,
-        secondaryType: pokemonDetails.types[1]?.type.name || '',
         order: pokemonDetails.order,
         image: pokemonDetails.sprites.other['official-artwork'].front_default,
       }
