@@ -26,7 +26,8 @@ router.get('/:id',
     } catch (error) {
       next(error);
     }
-  });
+  }
+);
 
 router.post('/',
   validatorHandler(createProductSchema, 'body'),
@@ -34,7 +35,8 @@ router.post('/',
     const body = req.body;
     const newProduct = await service.create(body);
     res.status(201).json(newProduct);
-  });
+  }
+);
 
 router.patch('/:id',
   validatorHandler(getProductSchema, 'params'),
@@ -48,8 +50,8 @@ router.patch('/:id',
     } catch (error) {
       next(error);
     }
-
-  });
+  }
+);
 
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
