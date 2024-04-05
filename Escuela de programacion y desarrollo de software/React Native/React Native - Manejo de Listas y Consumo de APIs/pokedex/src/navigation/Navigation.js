@@ -1,10 +1,10 @@
-import React from 'react';
-import { Image } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import FavoriteNavigation from './FavoriteNavigation';
-import PokedexNavigation from './PokedexNavigation';
-import AccountNavigation from './AccountNavigation';
+import React from "react";
+import { Image } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import FavoriteNavigation from "./FavoriteNavigation";
+import PokedexNavigation from "./PokedexNavigation";
+import AccountNavigation from "./AccountNavigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,44 +12,47 @@ export default function Navigation() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name='FavoriteNavigation'
+        name="FavoriteNavigation"
         component={FavoriteNavigation}
         options={{
           headerShown: false,
           tabBarLabel: "Favoritos",
           tabBarIcon: ({ color, size }) => (
-            <Icon name='heart' color={color} size={size} />
+            <Icon name="heart" color={color} size={size} />
           ),
         }}
       />
+
       <Tab.Screen
-        name='PokedexNavigation'
+        name="PokedexNavigation"
         component={PokedexNavigation}
         options={{
           headerShown: false,
           tabBarLabel: "",
-          tabBarIcon: () => renderPokeBall(),
+          tabBarIcon: () => renderPokeball(),
         }}
       />
+
       <Tab.Screen
-        name='AccountNavigation'
+        name="AccountNavigation"
         component={AccountNavigation}
         options={{
           headerShown: false,
-          tabBarLabel: "Mi Cuenta",
+          tabBarLabel: "Mi cuenta",
           tabBarIcon: ({ color, size }) => (
-            <Icon name='user' color={color} size={size} />
+            <Icon name="user" color={color} size={size} />
           ),
-        }} />
+        }}
+      />
     </Tab.Navigator>
   );
 }
 
-const renderPokeBall = () => {
+function renderPokeball() {
   return (
     <Image
-      source={require('../assets/pokeball.png')}
-      style={{ width: 70, height: 70, top: -15 }}
+      source={require("../assets/pokeball.png")}
+      style={{ width: 75, height: 75, top: -15 }}
     />
-  )
+  );
 }

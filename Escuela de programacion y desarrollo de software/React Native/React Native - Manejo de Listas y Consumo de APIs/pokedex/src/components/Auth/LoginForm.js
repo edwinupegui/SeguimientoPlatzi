@@ -1,73 +1,84 @@
-import { StyleSheet, View, Text, TextInput, Button, Keyboard } from 'react-native'
-import React, { useState } from 'react'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { user, userDetails } from '../../utils/userDB'
-import useAuth from '../../hooks/useAuth'
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Button,
+  Keyboard,
+} from "react-native";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { user, userDetails } from "../../utils/userDB";
+import useAuth from "../../hooks/useAuth";
 
 export default function LoginForm() {
-  const [error, setError] = useState('')
-  const { login } = useAuth()
+  const [error, setError] = useState("");
+  const { login } = useAuth();
 
   const formik = useFormik({
     initialValues: initialValues(),
-    validateOnChange: false,
     validationSchema: Yup.object(validationSchema()),
+    validateOnChange: false,
     onSubmit: (formValue) => {
-      setError('')
-      const { username, password } = formValue
+      setError("");
+      const { username, password } = formValue;
 
       if (username !== user.username || password !== user.password) {
-        setError('El usuario o la contraseña no son correctos')
+        setError("El usuario o la contraseña no son correcto");
       } else {
-        login(userDetails)
+        login(userDetails);
       }
-    }
-  })
+    },
+  });
 
   return (
     <View>
       <Text style={styles.title}>Iniciar sesión</Text>
       <TextInput
-        placeholder='Nombre de usuario'
+        placeholder="Nombre de usuario"
         style={styles.input}
-        autoCapitalize='none'
+        autoCapitalize="none"
         value={formik.values.username}
-        onChangeText={(text) => formik.setFieldValue('username', text)}
+        onChangeText={(text) => formik.setFieldValue("username", text)}
       />
-      <Text style={styles.error}>{formik.errors.username}</Text>
       <TextInput
-        placeholder='Contraseña'
+        placeholder="Contraseña"
         style={styles.input}
-        autoCapitalize='none'
+        autoCapitalize="none"
         secureTextEntry={true}
         value={formik.values.password}
-        onChangeText={(text) => formik.setFieldValue('password', text)}
+        onChangeText={(text) => formik.setFieldValue("password", text)}
       />
-      <Text style={styles.error}>{formik.errors.password}</Text>
-      <Button style={styles.button} title='Entrar' onPress={formik.handleSubmit} />
+      <Button title="Entrar" onPress={formik.handleSubmit} />
 
+      <Text style={styles.error}>{formik.errors.username}</Text>
+      <Text style={styles.error}>{formik.errors.password}</Text>
 
       <Text style={styles.error}>{error}</Text>
     </View>
-  )
+  );
 }
 
-const initialValues = () => {
-  return { username: '', password: '' }
-}
-const validationSchema = () => {
+function initialValues() {
   return {
-    username: Yup.string().required('El usuario es obligatorio'),
-    password: Yup.string().required('La contraseña es obligatoría')
-  }
+    username: "",
+    password: "",
+  };
+}
+
+function validationSchema() {
+  return {
+    username: Yup.string().required("El usuario es obligatorio"),
+    password: Yup.string().required("La contraseña es obligatoria"),
+  };
 }
 
 const styles = StyleSheet.create({
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 50,
     marginBottom: 15,
   },
@@ -76,14 +87,11 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    borderRadius: 10
+    borderRadius: 10,
   },
   error: {
-    textAlign: 'center',
+    textAlign: "center",
     color: "#f00",
-    marginTop: 5,
+    marginTop: 20,
   },
-  button: {
-    marginTop: 10
-  }
-})
+});

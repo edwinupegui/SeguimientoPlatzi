@@ -1,43 +1,49 @@
-import { SafeAreaView } from 'react-native'
-import React, { useState, useEffect } from 'react'
-import { getPokemonsApi, getPokemonDetailsByUrlApi } from '../api/pokemon'
-import PokemonList from '../components/PokemonList'
+import React, { useState, useEffect } from "react";
+import { SafeAreaView } from "react-native";
+import { getPokemonsApi, getPokemonDetailsByUrlApi } from "../api/pokemon";
+import PokemonList from "../components/PokemonList";
 
 export default function Pokedex() {
-  const [pokemons, setPokemons] = useState([])
-  const [nextUrl, setNextUrl] = useState(null)
-
-  const loadPokemons = async () => {
-    const response = await getPokemonsApi(nextUrl)
-    setNextUrl(response.next)
-
-    const promises = response.results.map(async (pokemon) => {
-      const pokemonDetails = await getPokemonDetailsByUrlApi(pokemon.url)
-      return {
-        id: pokemonDetails.id,
-        name: pokemonDetails.name,
-        principalType: pokemonDetails.types[0].type.name,
-        order: pokemonDetails.order,
-        image: pokemonDetails.sprites.other['official-artwork'].front_default,
-      }
-    })
-
-    const newPokemons = await Promise.all(promises)
-    setPokemons((prevPokemons) => [
-      ...prevPokemons,
-      ...newPokemons.map((pokemon, index) => ({ ...pokemon, key: `${pokemon.id}:${index}` })),
-    ])
-  }
+  const [pokemons, setPokemons] = useState([]);
+  const [nextUrl, setNextUrl] = useState(null);
 
   useEffect(() => {
     (async () => {
-      await loadPokemons()
-    })()
-  }, [])
+      await loadPokemons();
+    })();
+  }, []);
+
+  const loadPokemons = async () => {
+    try {
+      const response = await getPokemonsApi(nextUrl);
+      setNextUrl(response.next);
+
+      const pokemonsArray = [];
+      for await (const pokemon of response.results) {
+        const pokemonDetails = await getPokemonDetailsByUrlApi(pokemon.url);
+
+        pokemonsArray.push({
+          id: pokemonDetails.id,
+          name: pokemonDetails.name,
+          type: pokemonDetails.types[0].type.name,
+          order: pokemonDetails.order,
+          image: pokemonDetails.sprites.other["official-artwork"].front_default,
+        });
+      }
+
+      setPokemons([...pokemons, ...pokemonsArray]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <SafeAreaView>
-      <PokemonList pokemons={pokemons} loadPokemons={loadPokemons} isNext={nextUrl} />
+      <PokemonList
+        pokemons={pokemons}
+        loadPokemons={loadPokemons}
+        isNext={nextUrl}
+      />
     </SafeAreaView>
-  )
+  );
 }
