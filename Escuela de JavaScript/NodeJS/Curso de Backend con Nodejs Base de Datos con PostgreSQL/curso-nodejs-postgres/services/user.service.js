@@ -1,19 +1,17 @@
 const boom = require('@hapi/boom');
 
-const getConnection = require('../libs/postgres')
+const { models } = require('./../libs/sequelize');
 
 class UserService {
-  constructor() { }
+  constructor() {}
 
   async create(data) {
     return data;
   }
 
   async find() {
-    const client = await getConnection()
-    const response = await client.query('SELECT * FROM tasks')
-
-    return response.rows;
+    const rta = await models.User.findAll();
+    return rta;
   }
 
   async findOne(id) {
