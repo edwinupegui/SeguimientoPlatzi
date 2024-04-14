@@ -1,4 +1,5 @@
 const express = require('express');
+
 const CustomerService = require('../services/customers.service');
 const validationHandler = require('../middlewares/validator.handler');
 const {
@@ -10,11 +11,11 @@ const {
 const router = express.Router();
 const service = new CustomerService();
 
-router.get('/', async (req, res, next) => {
+router.get('/',  async (req, res, next) => {
   try {
     res.json(await service.find());
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
 
@@ -22,11 +23,13 @@ router.post('/',
   validationHandler(createCustomerSchema, 'body'),
   async (req, res, next) => {
     try {
-      const body = req.body; res.status(201).json(await service.create(body));
+      const body = req.body;
+      res.status(201).json(await service.create(body));
     } catch (error) {
       next(error);
     }
-  });
+  }
+);
 
 router.patch('/:id',
   validationHandler(getCustomerSchema, 'params'),
@@ -36,8 +39,11 @@ router.patch('/:id',
       const { id } = req.params;
       const body = req.body;
       res.status(201).json(await service.update(id, body));
-    } catch (error) { next(error); }
-  });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.delete('/:id',
   validationHandler(getCustomerSchema, 'params'),
@@ -45,7 +51,10 @@ router.delete('/:id',
     try {
       const { id } = req.params;
       res.status(200).json(await service.delete(id));
-    } catch (error) { next(error); }
-  });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 module.exports = router;

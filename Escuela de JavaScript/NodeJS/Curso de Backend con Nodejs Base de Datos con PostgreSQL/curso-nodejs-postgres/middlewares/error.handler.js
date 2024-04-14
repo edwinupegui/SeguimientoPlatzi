@@ -1,6 +1,7 @@
-const { ValidationError } = require("sequelize");
+const { ValidationError } = require('sequelize');
+const boom = require('@hapi/boom');
 
-function logErrors(err, req, res, next) {
+function logErrors (err, req, res, next) {
   console.error(err);
   next(err);
 }
@@ -26,9 +27,9 @@ function ormErrorHandler(err, req, res, next) {
       statusCode: 409,
       message: err.name,
       errors: err.errors
-    })
+    });
   }
-  next(err)
+  next(err);
 }
 
 
