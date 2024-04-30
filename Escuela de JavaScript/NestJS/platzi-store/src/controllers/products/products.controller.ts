@@ -61,6 +61,7 @@ export class ProductsController {
     return {
       id,
       payload,
+      test: 'test data',
     };
   }
 }
