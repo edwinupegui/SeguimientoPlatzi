@@ -1,14 +1,14 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
-const secret = 'myCat'
+const secret = 'myCat';
 const payload = {
   sub: 1,
   role: 'customer'
 }
 
 function signToken(payload, secret) {
-  return jwt.sign(payload, secret)
+  return jwt.sign(payload, secret);
 }
 
-const token = signToken(payload, secret)
-console.log(token)
+const token = signToken(payload, secret);
+console.log(token);
