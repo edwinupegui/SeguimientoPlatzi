@@ -9,16 +9,18 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
-  Res,
+  // Res,
   // ParseIntPipe,
 } from '@nestjs/common';
 
-import { Response } from 'express';
+// import { Response } from 'express';
+import { ApiTags } from '@nestjs/swagger';
 import { ParseIntPipe } from '../../common/parse-int.pipe';
-import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
+import { CreateProductDto, UpdateProductDto } from '../dtos/products.dto';
 
 import { ProductsService } from './../services/products.service';
 
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
@@ -32,6 +34,7 @@ export class ProductsController {
     // return {
     //   message: `products limit=> ${limit} offset=> ${offset} brand=> ${brand}`,
     // };
+    console.log(offset, limit, brand);
     return this.productsService.findAll();
   }
 
