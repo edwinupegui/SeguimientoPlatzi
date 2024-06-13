@@ -12,7 +12,7 @@ export class AppService {
     @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
   getHello(): string {
-    console.log(this.tasks);
+    // console.log(this.tasks);
     // const apiKey = this.config.get<string>('API_KEY');
     // const dbName = this.config.get('DATABASE_NAME');
     const apiKey = this.configService.apiKey;
