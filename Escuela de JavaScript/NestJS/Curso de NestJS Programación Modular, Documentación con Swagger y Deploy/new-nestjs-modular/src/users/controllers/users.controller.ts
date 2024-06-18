@@ -36,7 +36,7 @@ export class UsersController {
 
   @Get(':id/orders')
   getOrders(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.getOrdersByUser(id);
+    return this.usersService.getOrderByUser(id);
   }
 
   @Post()
